@@ -12,5 +12,9 @@ export const CaptainWebhook = class extends Stack {
 
   private provisionResources() {
     this.WebhookSubscriptionApi = new WebhookSubscriptionApi(this, 'WebhookSubscriptionApi', { name: 'aye-aye' });
+
+    this.WebhookMessagePipeline = new WebhookMessagePipeline(this, 'WebhookSubscriptionApi', {
+      source: this.WebhookSubscriptionApi.messageQueueAddress
+    });
   }
 };
